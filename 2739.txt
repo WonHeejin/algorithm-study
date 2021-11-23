@@ -1,0 +1,10 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        int input=sc.nextInt();
+        for(int number=1; number<=9; number++){
+            System.out.println(input+" * "+number+" = "+input*number);        
+        }
+    }
+}
