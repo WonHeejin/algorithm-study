@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        int b=sc.nextInt();
+        int a=sc.nextInt();
+        if(a-45<0){
+            a=a-45+60;
+            
+            if(b==0) {b=23;
+            System.out.println(b);
+            System.out.println(a);
+            }else {
+            b=b-1;
+            System.out.println(b);
+            System.out.println(a);
+            }
+        }else{
+            a=a-45;
+            System.out.println(b);
+            System.out.println(a);
+            
+        }
+    }
+}
