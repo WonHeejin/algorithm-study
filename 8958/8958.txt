@@ -1,0 +1,34 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n =sc.nextInt();
+		String[] ox=new String[n];
+		int result=0;
+		int score=0;
+		for(int i=0;i<n;i++) {
+			ox[i]=sc.next();			
+		}
+		for(int i=0;i<n;i++) {
+			for(int f=0;f<ox[i].length();f++){
+				if(ox[i].charAt(f)=='O') {
+					if(f!=0&&ox[i].charAt(f-1)=='O') {
+						result+=1;
+					}else {
+						result++;
+					}
+				}else {
+					result=0;
+				}
+				if(result!=0) {
+					score+=result;
+				}			
+			}System.out.println(score);
+			result=0;
+			score=0;
+		}		
+	} 
+}
