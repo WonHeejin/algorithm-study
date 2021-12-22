@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int c =sc.nextInt();
+		int[] student=new int[c];
+		int[][] score=null;
+		int[] avg=new int[c];
+		int count=0;
+		double[] result=new double[c];
+		for(int i=0;i<c;i++) {
+			student[i]=sc.nextInt();
+			score=new int[c][student[i]];
+			for(int f=0;f<student[i];f++) {
+				score[i][f]=sc.nextInt();
+				avg[i]+=score[i][f];
+			}
+			avg[i]=avg[i]/student[i];
+			for(int f=0;f<score[0].length;f++) {
+				if(score[i][f]>avg[i]) {
+					count++;
+				}
+			}result[i]=(count*1.00/student[i]*1.00)*100;
+			count=0;
+			System.out.printf("%.3f",result[i]);
+			System.out.println("%");
+		}
+	} 
+}
