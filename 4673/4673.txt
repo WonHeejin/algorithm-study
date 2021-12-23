@@ -1,0 +1,25 @@
+public class Main {
+	public static void main(String[] args) {
+		boolean[] self=new boolean[10001];
+		for(int i=1;i<10001;i++) {		
+			int sum=d(i);
+			if(sum<10001) {
+				self[sum]=true;
+			}
+		}
+		for(int f=1;f<10001;f++) {
+			if(!self[f]) {
+				System.out.println(f);
+			}
+		}
+	}
+
+	private static int d(int i) {
+		int sum=i;
+		while(i>0) {
+			sum+=i%10;
+			i/=10;
+		}
+		return sum;
+	}
+}
