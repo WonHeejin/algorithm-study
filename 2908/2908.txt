@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] arg){
+        Scanner sc= new Scanner(System.in);
+        String[] input= sc.nextLine().split(" ");
+        String[] num=new String[6];
+        for(int i=0;i<3;i++){
+            num[i]=String.valueOf(input[0].charAt(i));
+        }
+        for(int i=3;i<6;i++){
+            num[i]=String.valueOf(input[1].charAt(i-3));
+        }
+        String last=num[2];
+        num[2]=num[0];
+        num[0]=last;
+        last=num[5];
+        num[5]=num[3];
+        num[3]=last;
+        int one=Integer.parseInt(num[0]+num[1]+num[2]);
+        int two=Integer.parseInt(num[3]+num[4]+num[5]);
+        if(one>two){
+            System.out.println(one);
+        }else{
+            System.out.println(two);
+        }
+    }
+}
