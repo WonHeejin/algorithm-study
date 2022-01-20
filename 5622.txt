@@ -1,0 +1,38 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] arg){
+        Scanner sc= new Scanner(System.in);
+        String input= sc.nextLine();
+        int[] toNum= new int[input.length()];
+        for(int i=0;i<input.length();i++){
+            toNum[i]=2;
+            int alpha=(int)input.charAt(i);
+                if(alpha>=68){
+                    toNum[i]+=1;
+                    if(alpha>=71){
+                        toNum[i]+=1;
+                        if(alpha>=74){
+                            toNum[i]+=1;
+                            if(alpha>=77){
+                                toNum[i]+=1;
+                                if(alpha>=80){
+                                    toNum[i]+=1;
+                                    if(alpha>=84){
+                                        toNum[i]+=1;
+                                        if(alpha>=87){
+                                            toNum[i]+=1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+        for(int i=0;i<input.length()-1;i++){
+        	
+            toNum[i+1]+=toNum[i];
+        }
+        System.out.println(toNum[input.length()-1]+toNum.length);
+    }
+}
