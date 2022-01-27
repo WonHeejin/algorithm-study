@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] arg){
+        Scanner sc= new Scanner(System.in);
+        String input=sc.next();
+        System.out.println(check(input));
+    }
+    public static int check(String input){
+        String[] alpha={"c=","c-","dz=","d-","lj","nj","s=","z="};
+        while(input.length()>0){
+            for(int i=0;i<8;i++){
+                if(input.contains(alpha[i])){
+                    input=input.replace(alpha[i],"0");
+                }    
+            }
+            if(!input.contains(alpha[0])&&!input.contains(alpha[1])&&!input.contains(alpha[2])&&!input.contains(alpha[3])&&!input.contains(alpha[4])&&!input.contains(alpha[5])&&!input.contains(alpha[6])&&!input.contains(alpha[7])){
+                break;
+            } 
+        }
+        return input.length();
+    }
+}
