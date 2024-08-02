@@ -1,10 +1,24 @@
-import java.util.Arrays;
+/*for문으로 배열 생성해서 값 넣기
+stream과 성능 비교
+*/
 class Solution {
     public int[] solution(int n, int[] numlist) {
-        int[] answer = Arrays.stream(numlist) //array->stream
-            .filter(i->i%n==0) //n으로 나눴을때 나머지가 0인것만 필터링
-            .toArray(); //stream->array
+        int count = 0;
+        int index = 0;
+        for(int x: numlist) {
+            if(x%n==0)
+                count++;
+        }
         
+        int[] answer = new int[count];
+        
+        for(int a: numlist) {
+            if(a%n==0) {
+                answer[index] = a;
+                index++;
+            }
+            if(index==count) break;
+        }
         return answer;
     }
 }
