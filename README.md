@@ -13,10 +13,31 @@
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/WonHeejin/algorithm-study/tree/master/0001-two-sum) |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
 ## Hash Table
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/WonHeejin/algorithm-study/tree/master/0001-two-sum) |
+## Linked List
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Stack
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Design
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Doubly-Linked List
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Data Stream
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
 <!---LeetCode Topics End-->
 
 # 자료구조
