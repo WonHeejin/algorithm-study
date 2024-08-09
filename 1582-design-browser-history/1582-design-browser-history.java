@@ -1,28 +1,38 @@
+class Node {
+    String data;
+    Node prev;
+    Node next;
+    public Node(String data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
 class BrowserHistory {
-
-    LinkedList<String> link = new LinkedList<String>();
-    int current = 0;
+    Node currentPage;
     public BrowserHistory(String homepage) {
-        link.addFirst(homepage);
+        currentPage = new Node(homepage);
     }
     
     public void visit(String url) {
-        //visit after 'back' or 'foward'
-        while(link.size()-1>current) {
-            link.removeLast();
-        }
-        ++current;
-        link.add(url);
+        Node newPage = new Node(url);
+        newPage.prev = currentPage;
+        currentPage.next = newPage;
+        currentPage = newPage;
     }
     
     public String back(int steps) {
-        current=Math.max(current-steps,0);
-        return link.get(current);
+        while(steps-->0&&currentPage.prev!=null) {
+            currentPage = currentPage.prev;
+        }
+        return currentPage.data;
     }
     
     public String forward(int steps) {
-        current=Math.min(current+steps,link.size()-1);
-        return link.get(current);
+        while(steps-->0&&currentPage.next!=null) {
+            currentPage = currentPage.next;
+        }
+        return currentPage.data;
     }
 }
 
