@@ -8,7 +8,7 @@ class BrowserHistory {
     
     public void visit(String url) {
         //visit after 'back' or 'foward'
-        for(int i=link.size()-1; i>current; i--) {
+        while(link.size()-1>current) {
             link.removeLast();
         }
         ++current;
@@ -16,12 +16,12 @@ class BrowserHistory {
     }
     
     public String back(int steps) {
-        current=current-steps<=0?0:current-steps;
+        current=Math.max(current-steps,0);
         return link.get(current);
     }
     
     public String forward(int steps) {
-        current=current+steps>=link.size()-1?link.size()-1:current+steps;
+        current=Math.min(current+steps,link.size()-1);
         return link.get(current);
     }
 }
