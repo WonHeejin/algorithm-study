@@ -9,20 +9,25 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        StringBuffer sb = new StringBuffer();
-        int[][] a = new int[n][m];
+        String[] line = new String[n*2]; //행이 n개인 행렬 2개
         
-        for(int i=0; i<2; i++) { //두 개의 행렬을 받음
-            for(int j=0; j<n; j++) {
-                st = new StringTokenizer(br.readLine());
-                for(int k=0; k<m; k++) {
-                    a[j][k] += Integer.parseInt(st.nextToken());
-                    if(i==1) sb.append(a[j][k] + " ");
-                }
-                if(i==1) sb.append("\n");
-            }
+        for(int i=0; i<n*2; i++) {
+            line[i] = br.readLine();
         }
+        System.out.print(solution(n, line));
+    }
+    
+    public static String solution(int n, String[] line) {
+        StringBuffer sb = new StringBuffer();
         
-        System.out.print(sb.toString());
+        for(int j=0; j<n; j++) {
+            StringTokenizer a = new StringTokenizer(line[j]); //행렬 a
+            StringTokenizer b = new StringTokenizer(line[j+n]); //행렬 b
+            while(a.hasMoreTokens()) { //토큰 있으면 true, 없으면 false
+                sb.append(Integer.parseInt(a.nextToken())+Integer.parseInt(b.nextToken())+" ");   
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }
