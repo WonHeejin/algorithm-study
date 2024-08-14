@@ -1,31 +1,27 @@
-import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         int col = 5;
         int row = 15;
-        char[][] chars = new char[col][row];
-        Scanner sc = new Scanner(System.in);
+        String[] line = new String[col];
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
          
         
         for(int i=0; i<col; i++) {
-        	String line = sc.nextLine();
-            for(int j=0; j<line.length(); j++) {
-                chars[i][j] = line.charAt(j);
-            }
+        	line[i] = br.readLine();
         }
         
-        System.out.print(solution(col, row, chars));
+        System.out.print(solution(col, row, line));
     }
     
-    public static String solution(int col, int row, char[][] chars) {
+    public static String solution(int col, int row, String[] line) {
     	StringBuffer sb = new StringBuffer();
+    	
     	for(int l=0; l<row; l++) {
     		for(int k=0; k<col; k++) {
-    			if(chars[k][l] != '\0') {
-    				sb.append(chars[k][l]);
-    			} else {
-    				continue;
+    			if(line[k].length() > l) {
+    				sb.append(line[k].charAt(l));
     			}
     		}
     	}
