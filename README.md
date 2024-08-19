@@ -7,39 +7,6 @@
 백준허브 플러그인 연동
 
 
-<!---LeetCode Topics Start-->
-# LeetCode Topics
-## Array
-|  |
-| ------- |
-| [0001-two-sum](https://github.com/WonHeejin/algorithm-study/tree/master/0001-two-sum) |
-| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
-## Hash Table
-|  |
-| ------- |
-| [0001-two-sum](https://github.com/WonHeejin/algorithm-study/tree/master/0001-two-sum) |
-## Linked List
-|  |
-| ------- |
-| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
-## Stack
-|  |
-| ------- |
-| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
-## Design
-|  |
-| ------- |
-| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
-## Doubly-Linked List
-|  |
-| ------- |
-| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
-## Data Stream
-|  |
-| ------- |
-| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
-<!---LeetCode Topics End-->
-
 # 자료구조
 
 ## 리스트
@@ -173,3 +140,141 @@
   
   </div>
 </details>
+
+## Stack, Queue, DeQue
+<details>
+  <summary><b>스택(Stack)</b></summary>
+  <div markdown="1">
+    
+  - 나중에 저장된 것을 먼저 꺼냄 -> 후입선출(LIFO)
+  - 매소드
+    |type|method|설명|
+    |---|---|---|
+    |boolean|empty()|Stack이 피어있는지 확인|
+    |Object|peek()|맨 위에 저장된 객체 반환(반환 후 삭제x, 비어있으면 EmptyStackException 발생)|
+    |Object|pop()|맨 위에 저장된 객체 반환(반환 후 삭제o, 비버있으면 EmptyStackException 발생)|
+    |Object|push()|객체 저장|
+    |int|search(Object o)|객체를 찾아서 위치 전달. 없으면 -1 전달(배열과 달리 인덱스 1부터 시작)|
+  - 예시
+    ```java
+    import java.util.Stack;
+    
+    public class Main {
+        public static void main(String[] args) {
+    		
+    		Stack<Integer> stack = new Stack<Integer>();
+                      // 인덱스 
+    		stack.push(1); //5
+    		stack.push(2); //4 
+    		stack.push(3); //3 
+    		stack.push(4); //2 
+    		stack.push(5); //1
+    		
+    		System.out.println(stack.search(4)); // 결과 : 2
+    		System.out.println(stack.peek()); // 결과 : 5
+    		System.out.println(stack.pop()); // 결과 : 5
+    		System.out.println(stack.peek()); // 결과 : 4
+    ```
+  </div>
+</details>
+
+<details>
+  <summary><b>큐(Queue)</b></summary>
+
+  <div markdown="1">
+
+  - 먼저 저장한 것을 먼저 꺼냄 -> 선입선출(FIFO)
+  - 메소드
+    |type|method|설명|
+    |---|---|---|
+    |boolean|add(Object o)|객체 저장(저장공간 부족하면 IllegalStateException 발생)|
+    |Object|remove()|객체 반환 후 삭제o(Queue가 비어있으면 NoSuchElementException 발생)|
+    |Object|element()|객체 반환 후 삭제x(Queue가 비어있으면 NoSuchElementException 발생)|
+    |Object|offer(Object o)|객체 저장(저장공간 부족하면 false 반환)|
+    |Object|poll()|객체 반환 후 삭제o(Queue가 비어있으면 null 반환)|
+    |Object|peek()|겍체 반환 후 삭제x(Queue가 비어있으면 null 반환)|
+  - 예시
+    ```java
+     import java.util.Queue;
+    
+    public class Main {
+      public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<Integer>();
+        
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+        queue.add(4);
+        queue.add(5);
+  
+        System.out.println(queue.element()); //결과 : 1
+        System.out.println(queue.remove()); //결과 : 1
+        System.out.println(queue.element()); //결과 : 2
+        System.out.println(queue.remove()); //결과 : 2
+        System.out.println(queue.remove()); //결과 : 3
+        System.out.println(queue.element()); //결과 : 4 
+    ```    
+  </div>
+</details>
+
+<details>
+  <summary><b>덱(Deque)</b></summary>
+
+  <div markdown="1">
+
+  - 양쪽에서 추가,삭제 가능한 양방향 큐(Double-Ended Queue)
+  - Queue를 상속받아 구현되며, Java에서는 ArrayDeque, LinkedList 등으로 구현됨
+  - Stack 대신 Deque를 사용해야 하는 이유 : Stack은 Vector 클래스를 상속받아 구현됨. Vector는 동기화된 메서드로 구현되어있어 멀티 스레드 환경에서는 안전하지만 단일 스레드 환경에서는 동기화 차리에 대한 오버헤드가 발생하면서 성능이 저하됨. 이로인해 Vector 사용이 권장되지 않고 Vector를 상속받는 Stack 또한 권장되지 않음. 
+  - 메소드
+    - Stack과 대응되는 매소드 (addLast/addremove 또는 addFirst/removeFirst)
+      |Stack|Deque|
+      |---|---|
+      |push(e)|addFirst(e)|
+      |pop()|removeFirst()|
+      |peek()|peekFirst()|
+    - Queue와 대응되는 메소드
+      |Queue|Deque|
+      |---|---|
+      |add(e)|addLast(e)|
+      |offer(e)|offerLast(e)|
+      |remove()|removeFirst()|
+      |poll()|pollFirst()|
+      |element()|getFirst()|
+      |peek()|peekFirst()|
+
+  </div>
+</details>
+
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Array
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/WonHeejin/algorithm-study/tree/master/0001-two-sum) |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Hash Table
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/WonHeejin/algorithm-study/tree/master/0001-two-sum) |
+## Linked List
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Stack
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Design
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Doubly-Linked List
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+## Data Stream
+|  |
+| ------- |
+| [1582-design-browser-history](https://github.com/WonHeejin/algorithm-study/tree/master/1582-design-browser-history) |
+<!---LeetCode Topics End-->
