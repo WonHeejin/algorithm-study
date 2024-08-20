@@ -4,9 +4,11 @@ import java.util.*;
 public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
+        String strn = br.readLine();
+        int n_length = strn.length();
+        int n = Integer.parseInt(strn);
         int answer = 0;
-        for(int i=0; i<n; i++) {
+        for(int i=n-(n_length*9); i<n; i++) {
             if(solution(i, 0)+i==n){
                 answer = i;
                 break;
