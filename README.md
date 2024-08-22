@@ -190,7 +190,7 @@
     |boolean|add(Object o)|객체 저장(저장공간 부족하면 IllegalStateException 발생)|
     |Object|remove()|객체 반환 후 삭제o(Queue가 비어있으면 NoSuchElementException 발생)|
     |Object|element()|객체 반환 후 삭제x(Queue가 비어있으면 NoSuchElementException 발생)|
-    |Object|offer(Object o)|객체 저장(저장공간 부족하면 false 반환)|
+    |boolean|offer(Object o)|객체 저장(저장공간 부족하면 false 반환)|
     |Object|poll()|객체 반환 후 삭제o(Queue가 비어있으면 null 반환)|
     |Object|peek()|겍체 반환 후 삭제x(Queue가 비어있으면 null 반환)|
   - 예시
