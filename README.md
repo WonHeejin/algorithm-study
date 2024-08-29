@@ -141,7 +141,7 @@
   </div>
 </details>
 
-## Stack, Queue, DeQue
+## Stack, Queue, DeQue, Qriority Queue
 <details>
   <summary><b>스택(Stack)</b></summary>
   <div markdown="1">
@@ -245,6 +245,102 @@
   </div>
 </details>
 
+<details>
+  <summary><b>우선순위 큐(Priority Queue)</b></summary>
+
+  <div markdown="1">
+    
+  - 들어오는 순서에 상관 없이 우선순위가 높은 데이터가 먼저 나가는 자료구조
+  - `힙(Heap)`을 이용하여 구현하는 것이 가장 효율적
+  - 배열 vs 힙 시간복잡도 비교
+    ||배열|힙|
+    |---|---|---|
+    |원소 추가|O(1)|O(logN)|
+    |우선순위 가장 높은 원소 확인|O(N)|O(1)|
+    |우선순위 가장 높은 원소 제거|O(N)|O(logN)|
+  - `힙(Heap)` : 우선순위큐를 위해 고안된 `완전이진트리` 형태의 자료구조
+  - `완전이진트리` : 두 개의 자식 노드만 갖는 이진트리. 마지막 레벨을 제외한 모든 레벨이 채워져 있고, 마지막 레벨은 왼쪽부터 채워져야함.
+  - 힙의 종류
+    - 최대 힙(Max Heap) : 부모 노드의 값이 자식 노드보다 크거나 같음. 가장 위의 노드가 최댓값.
+    - 최소 힙(Min Heap) : 부모 노드의 값이 자식 노드보다 작거나 같음. 가장 위의 노드가 최솟값.
+  - 힙을 배열로 표현했을 때의 인덱스
+    - 왼쪽 자식 노드 : 부모 노드 *2
+    - 오른쪽 자식 노드 : 부모 노드*2+1
+    - 부모 노드 : 자식 노드/2
+
+  - 노드 삽입
+    - 마지막 레벨의 왼쪽 부터 삽입. 삽입 후 부모 노드와 비교 후 우선순위에 따라 노드 변경.
+      ``` java
+      //Min Heap
+      ArrayList<Integer> heap = new ArrayList<Integer>();
+      public void insert(int number) {
+        int i = heap.size()+1; //마지막 노드의 인덱스
+    
+        while(i>1 && number < heap.get(i/2)) { //첫번째 노드까지  부모 노드와 비교
+          //부모 노드 보다 작으면 부모노드를 자식 노드로, 새로 들어온 노드를 부모노드로 변경
+          heap.set(i, heap.get(i/2));
+          i/=2; //부모 노드로 이동
+        }
+        heap.set(i, number);
+      }
+      ```
+  - 노드 삭제
+    - 최상위 노드를 삭제하면 트리구조가 깨지기 때문에 젤 마지막 노드와 최상위 노드의 자리를 변경 후 마지막 노드 삭제. 이후 자식 노드와 비교하며 우선순위에 따라 노드 변경.
+      ```java
+       //Min Heap
+      ArrayList<Integer> heap = new ArrayList<Integer>();
+      public void delete() {
+        int temp = heap.get(heap.size()); //최상위로 올릴 노드
+        heap.set(heap.size(), heap.get(1)); //첫번째 노드를 마지막 노드로 이동
+        heap.remove(heap.size()); //마지막 노드 삭제
+        int parent = 1; //현재 노드
+        int child = 2; //자식 노드
+        
+        while(child<heap.size() && temp < heap.get(child)) { //마지막 노드 까지 자식노드와 비교, 자식 노드보다 작으면 중단
+          //왼쪽 노드 보다 오른쪽 노드가 더 작으면 오른쪽 노드로 이동
+          if(heap.get(child) > heap.get(child+1)) {
+            child++;
+          }
+          
+          //자식 노드와 자리 바꾸고 다음 자식노드와 비교
+          heap.set(parent, heap.get(child));
+          parent = child;
+          child = child*2;
+        }
+        heap.set(parent, temp);
+      }
+      ```
+
+    - 자바의 Priority Queue
+      ```java
+      public static void main(String[] args) throws IOException {
+        PriorityQueue<Integer> asc = new PriorityQueue<Integer>();
+      
+        asc.add(5);
+        asc.add(3);
+        asc.add(2);
+        asc.add(6);
+        asc.add(1);
+      
+        while(!asc.isEmpty()) {
+          System.out.println(asc.poll()); // 출력 : 1 2 3 5 6
+        }
+      
+        PriorityQueue<Integer> desc = new PriorityQueue<Integer>(Collections.reverseOrder());
+      
+        desc.add(5);
+        desc.add(3);
+        desc.add(2);
+        desc.add(6);
+        desc.add(1);
+      
+        while(!desc.isEmpty()) {
+          System.out.println(desc.poll()); // 출력 : 6 5 3 2 1
+        }
+      }
+      ```
+  </div>
+</details>
 
 <!---LeetCode Topics Start-->
 # LeetCode Topics
