@@ -314,6 +314,7 @@
     - 자바의 Priority Queue
       ```java
       public static void main(String[] args) throws IOException {
+        //오름차순
         PriorityQueue<Integer> asc = new PriorityQueue<Integer>();
       
         asc.add(5);
@@ -325,7 +326,8 @@
         while(!asc.isEmpty()) {
           System.out.println(asc.poll()); // 출력 : 1 2 3 5 6
         }
-      
+
+        //내림차순
         PriorityQueue<Integer> desc = new PriorityQueue<Integer>(Collections.reverseOrder());
       
         desc.add(5);
@@ -337,6 +339,21 @@
         while(!desc.isEmpty()) {
           System.out.println(desc.poll()); // 출력 : 6 5 3 2 1
         }
+
+        //람다식을 이용하여 우선순위 변경
+        PriorityQueue<Integer> abs = new PriorityQueue<Integer>((o1, o2) -> {
+  			if(Math.abs(o1) == Math.abs(o2)) {
+  				return o1 - o2; //절댓값이 같으면 더 작은 수 우선
+  			} else {
+  				return Math.abs(o1) - Math.abs(o2); //절댓값이 작은 순서대로
+  			}
+  		});
+  		
+  		abs.add(1);
+  		abs.add(-1);
+  		abs.add(-2);
+  		abs.add(-3);
+  		System.out.println("abs:"+abs.poll()); // 출력 : -1
       }
       ```
   </div>
