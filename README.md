@@ -359,6 +359,93 @@
   </div>
 </details>
 
+## DFS
+<details>
+  <summary><b>깊이 우선 탐색(Depth First Search)</b></summary>
+
+  <div markdown="1">
+
+  - 그래프에서 깊은 부분을 우선적으로 탐색하는 알고리즘
+  - 동작 과정
+    1. 첫 번째 노드 방문
+    2. 인접 노드 유무 확인
+    3. 인접 노드 존재o -> 현재 노드를 스택에 저장 후 방문처리
+    4. 인접 노드 존재x -> 스택에서 최상단 노드 꺼내어 해당 노드로 이동
+    5. 인접 노드가 없고 스택에 저장된 노드도 없으면 탐색 종료
+
+  - 장점
+    - 현재 순회 중인 노드만 저장(Stack 활용)하기 때문에 BFS에 비해 메모리 공간을 덜 차지함
+    - 목표 노드가 깊은 단계에 있는 경우 해를 빨리 구할 수 있음
+  - 단점
+    - 해가 없는 경로에 깊이 빠질 수 있음 -> 미리 지정한 임의의 깊이까지만 탐색하고, 목표 노드를 발견하지 못하면 다음 경로를 탐색하도록 설정해야 함
+    - 얻은 해가 최단 경로라는 보장은 없음(최적의 해가 아닐 수 있음)
+  - java 구현
+    ```java
+    package demo;
+    
+    import java.io.*;
+    import java.util.*;
+    
+    public class Main{
+    
+    	static Deque<Integer> stack = new LinkedList<Integer>();
+    	static boolean visited[];
+    	static int graph[][]; 
+    	static int nodes;
+    	static int edges;
+    	static StringBuffer sb;
+    
+    	public static void main(String[] args) throws IOException {
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    		StringTokenizer st = new StringTokenizer(br.readLine());
+    		nodes = Integer.parseInt(st.nextToken());
+    		edges = Integer.parseInt(st.nextToken());
+    		int start = Integer.parseInt(st.nextToken());
+    		visited = new boolean[nodes+1];
+    		graph = new int[nodes+1][nodes+1];
+    		sb = new StringBuffer();
+    		
+    		for(int i=0; i<edges; i++) {
+    			StringTokenizer st2 = new StringTokenizer(br.readLine());
+    			int node1 = Integer.parseInt(st2.nextToken());
+    			int node2 = Integer.parseInt(st2.nextToken());
+    			graph[node1][node2] = 1;
+    			graph[node2][node1] = 1;
+    		}
+    		
+    		
+    		visited[start] = true;
+    		stack.add(start);
+    		sb.append(start).append(" ");
+    		
+    		dfs(start);
+    		
+    		System.out.println(sb.toString());
+    		
+    	}
+    
+    	public static void dfs(int current) {
+    		for(int j=1; j<=nodes; j++) {
+    			//인접 노드 확인
+    			if(graph[current][j] == 1) {
+    				//방문 여부 확인
+    				if(!visited[j]) {
+    					//스택에 저장 후 방문 처리
+    					stack.add(j);
+    					visited[j] = true;
+    					
+    					sb.append(j).append(" ");
+    					//인접 노드 방문
+    					dfs(j);
+    				}
+    			}
+    		}
+    	}
+    }
+    ```
+  </div>
+</details>
+
 <!---LeetCode Topics Start-->
 # LeetCode Topics
 ## Array
