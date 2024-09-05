@@ -359,7 +359,7 @@
   </div>
 </details>
 
-## DFS
+## DFS, BFS
 <details>
   <summary><b>깊이 우선 탐색(Depth First Search)</b></summary>
 
@@ -443,6 +443,89 @@
     	}
     }
     ```
+  </div>
+</details>
+
+<details>
+  <summary><b>너비 우선 탐색(Breath First Search)</b></summary>
+
+  <div markdown="1">
+    
+  - 그래프에서 가까운 노드부터 우선적으로 탐색하는 알고리즘
+  - 큐 자료구조를 이용함
+  - 동작과정
+    1. 첫번째 노드 방문처리 후 인접 노드를 큐에 저장
+    2. 큐에서 값을 꺼내어 방문처리 후 인접 노드 중 방문하지 않은 노드 있다면  큐에 저장.
+    3. 큐에서 값을 꺼낼 수 없을 때 까지 2~3번 반복.
+
+  - 장점
+    - 최단 경로를 구할 수 있음
+  - 단점
+    - 경로가 매우 길 경우 탐색해야하는 노드의 수가 증가함으로 메모리 공간을 많이 차지함
+    - 해가 존재하지 않는다면 유한 그래프의 경우 모든 그래프를 탐색한 후 실패로 끝남
+    - 무한 그래프의 경우 해를 찾지 못하고 끝내지도 못함
+  - java 구현
+  ```java
+  import java.io.*;
+  import java.util.*;
+  
+  public class Main{
+  
+  	static boolean visited[];
+  	static int graph[][]; 
+  	static int nodes;
+  	static int edges;
+  	static StringBuffer sb;
+  	static Queue<Integer> queue = new LinkedList<Integer>();
+  	public static void main(String[] args) throws IOException {
+  		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+  		StringTokenizer st = new StringTokenizer(br.readLine());
+  		nodes = Integer.parseInt(st.nextToken());
+  		edges = Integer.parseInt(st.nextToken());
+  		int start = Integer.parseInt(st.nextToken());
+  		visited = new boolean[nodes+1];
+  		graph = new int[nodes+1][nodes+1];
+  		sb = new StringBuffer();
+  		
+  		for(int i=0; i<edges; i++) {
+  			StringTokenizer st2 = new StringTokenizer(br.readLine());
+  			int node1 = Integer.parseInt(st2.nextToken());
+  			int node2 = Integer.parseInt(st2.nextToken());
+  			graph[node1][node2] = 1;
+  			graph[node2][node1] = 1;
+  		}
+  		
+  		
+  		visited[start] = true;
+  		sb.append(start).append(" ");
+  		queue.add(start);
+  		
+  		while(!queue.isEmpty()) {
+  			//큐에서 값을 꺼내서 탐색
+  			bfs(queue.poll());
+  		}
+  		
+  		System.out.println(sb.toString());
+  		
+  	}
+  
+  	public static void bfs(int current) {
+  		for(int j=1; j<=nodes; j++) {
+  			//인접 노드 확인
+  			if(graph[current][j] == 1) {
+  				//방문 여부 확인
+  				if(!visited[j]) {
+  					//큐에 저장 후 방문 처리
+  					queue.add(j);
+  					visited[j] = true;
+  					
+  					sb.append(j).append(" ");
+  				}
+  			}
+  		}
+  	}
+  }
+  ```
   </div>
 </details>
 
