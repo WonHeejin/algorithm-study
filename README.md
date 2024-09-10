@@ -529,6 +529,108 @@
   </div>
 </details>
 
+## 순열, 조합
+<details>
+  <summary><b>순열(Permutation)</b></b></summary>
+
+  <div markdown="1">
+    
+  - n개의 값 중에서 r개의 값을 <b>순서를 고려하여</b> 선정하는 경우의 수
+  - 즉, 순서가 다르면 다른 경우의 수로 봄([a,b]와 [b,a]는 다른 것으로 취급)
+  - 경우의 수를 계산할 때는 n!/(n-r)!로 계산 함
+  - java 코드
+    ```java
+    import java.io.*;
+    import java.util.*;
+    
+    public class Main{
+    
+    	public static boolean[] visited;
+    	public static int[] result;
+    	public static int r;
+    	public static int n;
+    	public static int[] intArrN;
+    	
+    	public static void main(String[] args) throws IOException {
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    		n = Integer.parseInt(br.readLine());
+    		r = Integer.parseInt(br.readLine());
+    		String[] arrN = br.readLine().split("");
+    		intArrN = new int[n];
+    		visited = new boolean[n];
+    		result  = new int[r];
+    		for(int i=0; i<arrN.length; i++) {
+    			intArrN[i] = Integer.parseInt(arrN[i]);
+    		}
+    		
+    		System.out.println(n+"P"+r+"="+permutationCount(n, r));
+    		permutation(0);
+    	}
+    	
+    	/**
+    	 * 순열 경우의 수
+    	 * @param n
+    	 * @param r
+    	 * @return
+    	 */
+    	public static int permutationCount(int n, int r) {
+    		return factorial(n) / factorial(n-r);
+    	}
+    	
+    	public static int factorial(int number) {
+    		if(number == 1 || number == 0) {
+    			return 1;
+    		}
+    		return number*factorial(number-1);
+    	}
+    	
+    	/**
+    	 * 순열의 모든 경우 출력
+    	 * @param depth
+    	 */
+    	public static void permutation(int depth) {
+    		if(depth == r) {
+    			Arrays.stream(result).forEach(System.out::print);
+    			System.out.println("");
+    			return;
+    		}
+    		for(int i=0; i<n; i++) {
+    			if(visited[i]) {
+    				continue;
+    			} else {
+    				result[depth] = intArrN[i];
+    				visited[i] = true;
+    				permutation(depth+1);
+    				visited[i] = false; //r번째까지 다 돌면 visited 초기화 
+    			}
+    		}
+    	}
+    }
+    ```
+- 콘솔
+  ```
+  4 //n 입력 
+  2 //r 입력
+  1234 //arrN 입력
+  4P2=12 // 순열 경우의 수
+  12 //순열 출력 시작
+  13
+  14
+  21
+  23
+  24
+  31
+  32
+  34
+  41
+  42
+  43 //순열 출력 종료
+  ```
+  </div>
+</details>
+
+
+
 <!---LeetCode Topics Start-->
 # LeetCode Topics
 ## Array
