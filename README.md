@@ -629,6 +629,97 @@
   </div>
 </details>
 
+<details>
+  <summary><b>조합(Combination)</b></summary>
+
+  <div markdown="1">
+
+  - n개의 값 중에서 r개의 값을 <b>순서를 고려하지 않고</b> 선정하는 경우의 수
+  - 즉, 순서가 달라도 같은 경우의 수로 봄([a,b]와 [b,a]는 같은 것으로 취급)
+  - 경우의 수를 계산할 때는 n!/((n-r)!*r!)로 계산하고 nCr로 표기함
+  - java 코드 : `나`를 포함하는 경우의 수(n-1Cr-1)와 `나`를 포함하지 않는 경우의 수(n-1Cr)의 합으로 치환하여 재귀함수 구현
+    ```java
+    import java.io.*;
+    import java.util.*;
+    
+    public class Main{
+    
+    	public static boolean[] visited;
+    	public static int[] result;
+    	public static int r;
+    	public static int n;
+    	public static int[] intArrN;
+    	
+    	public static void main(String[] args) throws IOException {
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    		n = Integer.parseInt(br.readLine());
+    		r = Integer.parseInt(br.readLine());
+    		String[] arrN = br.readLine().split("");
+    		intArrN = new int[n];
+    		visited = new boolean[n];
+    		result  = new int[r];
+    		for(int i=0; i<arrN.length; i++) {
+    			intArrN[i] = Integer.parseInt(arrN[i]);
+    		}
+    		
+    		System.out.println(n+"C"+r+"="+combinationCount(n, r));
+    		combination(0);
+    	}
+    	
+    	/**
+    	 * 조합 경우의 수
+    	 * @param n
+    	 * @param r
+    	 * @return
+    	 */
+    	public static int combinationCount(int n, int r) {
+    		if(n == r || r == 0) {
+    			return 1;
+    		}
+    		return combinationCount(n-1, r-1) + combinationCount(n-1, r);
+    	}
+    	
+    	/**
+    	 * 조합의 모든 경우 출력
+    	 * @param depth
+    	 */
+    	public static void combination(int depth) {
+    		if(depth == r) {
+    			Arrays.stream(result).forEach(System.out::print);
+    			System.out.println("");
+    			return;
+    		}
+    		for(int i=depth; i<n; i++) { //depth 이전의 값은 제외
+    			if(visited[i]) {
+    				continue;
+    			} else {
+    				result[depth] = intArrN[i];
+    				visited[i] = true;
+    				combination(depth+1);
+    				visited[i] = false; //r번째까지 다 돌면 visited 초기화 
+    			}
+    		}
+    	}
+    }
+    ```
+  - 출력
+    ```
+    4 //n 입력
+    2 //r 입력
+    1234 //arrN 입력
+    4C2=6 //조합 경우의 수 출력
+    12 //조합의 모든 경우의 수 출력 시작
+    13
+    14
+    23
+    24
+    32
+    34
+    42
+    43 //조합의 모든 경우의 수 출력 종료
+    ```
+  </div>
+</details>
 
 
 <!---LeetCode Topics Start-->
