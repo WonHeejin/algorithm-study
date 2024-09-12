@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] arg){
+        int[][] apart=new int[15][15];
+        for(int i=1;i<15;i++){
+            apart[0][i]=i;
+            apart[i][1]=1;
+        }
+        for(int floor=1;floor<=14;floor++){
+            for(int number=2;number<=14;number++){
+                apart[floor][number]=apart[floor][number-1]+apart[floor-1][number];
+            }
+        }
+        Scanner sc= new Scanner(System.in);
+        int t= sc.nextInt();
+        for(int j=0;j<t;j++){
+            int k=sc.nextInt();
+            int n=sc.nextInt();
+            System.out.println(apart[k][n]);
+        }
+    }
+}
