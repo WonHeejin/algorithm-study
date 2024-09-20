@@ -721,6 +721,65 @@
   </div>
 </details>
 
+## 정렬(Sort)
+<details>
+  <summary><b>선택정렬(Selection Sort)</b></summary>
+
+  <div markdown="1">
+
+  - 해당 순서에 원소를 넣을 위치는 정해져 있고, 어떤 원소를 넣을지 선택하는 알고리즘.
+  - 예)
+    - 오름차순 : 첫 번째 위치에 최솟값, 두 번째 위치에 두 번째 최솟값...
+    - 내림차순 : 첫 번째 위치에 최댓값, 두 번째 위치에 두 번째 최솟값...
+  - java 코드(오름차순 정렬, 배열 마지막 순서에 최댓값 -> 첫번째 순서에 최솟값)
+  ```java
+  import java.io.*;
+  import java.util.*;
+  
+  public class Main{
+      public static void main(String[] args) throws IOException {
+          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+          StringTokenizer st = new StringTokenizer(br.readLine());
+          int N = Integer.parseInt(st.nextToken());
+          int K = Integer.parseInt(st.nextToken());
+          int[] arr = new int[N];
+          
+          //배열에 값 넣기
+          StringTokenizer st2 = new StringTokenizer(br.readLine());
+          for (int i=0; i<N; i++) {
+              arr[i] = Integer.parseInt(st2.nextToken());
+          }
+          
+          solution(N, K, arr);
+          
+      }
+      
+      public static void solution(int N, int K, int[] arr) {
+          int count = 0;
+          int max = 0;
+          for(int i=N-1; i>0; i--) {
+          	max = i; //최댓값의 인덱스 
+          	//최댓값 찾기
+              for(int j=i-1; j>=0; j--) {
+              	if(arr[j]>arr[max]) {
+              		max = j;
+              	}
+              }
+              //배열의 i번째 위치가 최댓값이 아니면 자리 교체
+              if(i!=max) {
+              	int temp = arr[max];
+              	arr[max] = arr[i];
+              	arr[i] = temp;
+              	++count;
+              }
+          }
+          Arrays.stream(arr).forEach(System.out::print);
+      }
+  }
+
+  ```
+  </div>
+</details>
 
 <!---LeetCode Topics Start-->
 # LeetCode Topics
