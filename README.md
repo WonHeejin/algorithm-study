@@ -782,6 +782,52 @@
   </div>
 </details>
 
+<details>
+  <summary><b>거품정렬(Bubble Sort)</b></b></summary>
+
+  <div markdown="1">
+
+  - 서로 인접한 두 원소를 비교하고, 조건에 맞지 않다면 자리를 교환하여 정렬하는 알고리즘
+  - java 코드 (오름차순 정렬)
+    ```java
+    import java.util.*;
+    import java.io.*;
+    
+    public class Main{
+        public static void main(String[] args) throws IOException{
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            int N = Integer.parseInt(br.readLine());
+            int[] arr = new int[N];
+            //배열 담기
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for(int i=0; i<N; i++) {
+                arr[0] = Integer.parseInt(st.nextToken());
+            }
+            
+            solution(N, arr);
+        }
+        
+        public static int solution(int N, int[] arr) {
+            
+            for(int i=0; i<N; i++){
+                for(int j=1; j<N; j++) {
+                    //두 원소 비교 -> 앞의 원소가 뒤의 원소보다 크면 자리 교체
+                    if(arr[j-1]>arr[j]) {
+                        int temp = arr[j-1];
+                        arr[j-1] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            }
+            
+            return count;
+        }
+    }
+    ```
+  </div>
+</details>
+
+
 <!---LeetCode Topics Start-->
 # LeetCode Topics
 ## Array
