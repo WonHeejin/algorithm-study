@@ -827,6 +827,48 @@
   </div>
 </details>
 
+<details>
+  <summary><b>삽입정렬(Insertion Sort)</b></summary>
+
+  <div markdown="1">
+
+  - 두 번째 원소부터 시작하여 앞의 원소들과 비교하며 삽입할 위치 지정 -> 원소들을 뒤로 미루고 지정한 위치에 원소 삽입
+  - 시간복잡도 : 최선의 경우 O(n) / 평균 또는 최악의 경우 O(n²)
+  - java 코드 (오름차순 정렬)
+    ```java
+    import java.io.*;
+    import java.util.*;
+    
+    public class Main{
+        public static void main(String[] args) throws IOException {
+            int[] arr = {1,3,5,14,56,37,8,20};
+            
+            Arrays.stream(solution(arr)).forEach(e -> System.out.print(e+" "));
+            
+        }
+        
+        public static int[] solution(int[] arr) {
+        	for(int i=1; i<arr.length; i++) { //두 번째 원소부터 시작
+        		int temp = arr[i];//현재 원소
+        		int prev = i-1;
+        		while(prev>=0 && arr[prev]>temp) { //현재 원소가 앞 원소보다 작으면 반복
+        			arr[prev+1] = arr[prev]; //앞 원소와 자리 교체
+        			prev--; //앞으로 이동
+        		}
+        		arr[prev+1] = temp; //삽입
+        	}
+        	return arr;
+        }
+        
+    }
+    ```
+- 출력
+    ```
+    1 3 5 8 14 20 37 56 
+    ```
+    
+  </div>
+</details>
 
 <!---LeetCode Topics Start-->
 # LeetCode Topics
