@@ -870,7 +870,7 @@
   </div>
 </details>
 
-## Two Pointer, Sliding Window
+## Two Pointer, Sliding Window, Binary Search
 <details>
   <summary><b>Two Pointer</b></summary>
   <div marks="1">
@@ -897,6 +897,22 @@
     - 부분배열의 첫번째 원소를 제거하고, 마지막 원소 뒤에 원소를 추가하여 한 칸씩 이동
     - 마지막 원소가 부분배열에 포함될때 까지 반복
   - 시간복잡도 : O(n)
+  </div>
+</details>
+
+<details>
+  <summary><b>Binary Search</b></summary>
+  <div marks="1">
+
+  - 정렬된 리스트에서 검색 범위를 좁혀나가며 탐색하는 알고리즘
+  - 정렬된 리스트에서만 사용 가능하지만, 검색이 반복될 때 마다 범위가 절반으로 줄어들기 때문에 속도가 빠름
+  - 동작 과정
+    - 정렬된 배열의 중간값과 탐색할 값을 비교
+      - 중간값과 탐색값이 같으면 탐색 종료
+      - 중간값보다 탐색값이 크면 중간값의 오른쪽 구간을 탐색
+      - 중간값보다 탐색값이 작으면 중간값의 왼쪽 구간을 탐색
+    - 값을 찾거나 간격이 비어있을 때 까지 반복
+  - 시간복잡도 : 최선 - O(1) / 평균, 최악 - O(log n)
   </div>
 </details>
 
