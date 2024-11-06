@@ -58,9 +58,7 @@ class Solution {
             visited[vertex] = true;
             //해당 노드를 경유해서 갈 경우로 최단거리 갱신
             for(int n=2; n<=N; n++) {
-                if(shortest[n] > shortest[vertex]+villages[vertex][n]) {
-                    shortest[n] = shortest[vertex]+villages[vertex][n];
-                }
+                shortest[n] = Math.min(shortest[n],shortest[vertex]+villages[vertex][n]);
             }
             
         }
