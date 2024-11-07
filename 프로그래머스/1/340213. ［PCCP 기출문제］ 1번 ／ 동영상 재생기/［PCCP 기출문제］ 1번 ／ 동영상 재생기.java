@@ -3,10 +3,10 @@ class Solution {
         String answer = "";
         
         //초 단위로 변경
-        int video_sec = Integer.parseInt(video_len.split(":")[0])*60+Integer.parseInt(video_len.split(":")[1]);
-        int pos_sec = Integer.parseInt(pos.split(":")[0])*60+Integer.parseInt(pos.split(":")[1]);
-        int op_start_sec = Integer.parseInt(op_start.split(":")[0])*60+Integer.parseInt(op_start.split(":")[1]);
-        int op_end_sec = Integer.parseInt(op_end.split(":")[0])*60+Integer.parseInt(op_end.split(":")[1]);
+        int video_sec = toSec(video_len);
+        int pos_sec = toSec(pos);
+        int op_start_sec = toSec(op_start);
+        int op_end_sec = toSec(op_end);
 
         //명령어 갯수만큼 반복
         for(int i=0; i<commands.length; i++) {
@@ -30,5 +30,9 @@ class Solution {
             return op_end_sec;
         }
         return pos;
+    }
+    
+    public int toSec(String strTime) {
+        return Integer.parseInt(strTime.split(":")[0])*60+Integer.parseInt(strTime.split(":")[1]);
     }
 }
