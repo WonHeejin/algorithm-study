@@ -916,6 +916,60 @@
   </div>
 </details>
 
+## 유니온 파인드(Union Find)
+<details>
+  <summary><b>Union Find</b></summary>
+  <div markdown="1">
+
+  - 여러 노드 중 2개의 노드를 하나의 집합으로 묶는 union과 특정 노드의 부모 노드를 찾는 find 연산으로 이루어진 알고리즘
+  - 두 노드가 같은 그래프에 속하는지 판별하는 알고리즘
+
+    ```java
+    import java.util.*;
+    
+    public class Main{
+    	static int[] parents = new int[7];//부모 노드 정보
+    
+    	public static void main(String args[]) {
+    		int[][] graphs = {{1,2}, {1,3}, {4,5}, {4,6}, {5,6}};
+    		
+    		//부모 노드를 자기 자신으로 초기화
+    		for(int i=1; i<=6; i++) {
+    			parents[i] = i;
+    		}
+    		
+    		//같은 노드 연결
+    		for(int i=0; i<graphs.length; i++) {
+    			union(graphs[i][0], graphs[i][1]);
+    		}
+    		
+    		Arrays.stream(parents).forEach(System.out::println); //각 원소의 부모노드 출력
+    	}
+    	
+    	public static void union(int a, int b) {
+    		int parentA = find(a);
+    		int parentB = find(b);
+    		
+    		if(parentA != parentB) {
+    			parents[b] = parentA;
+    		}
+    	}
+    	
+    	public static int find(int a) {
+    		//인덱스와 부모 노드가 같으면 그대로 리턴(최상위 노드일 경우)
+    		if(parents[a] == a) {
+    			return a;
+    		} else {
+    			//부모 노드를 찾아서 갱신 후 리턴
+    			return parents[a] = find(parents[a]);
+    		}
+    	}
+    }
+    ```
+    
+  </div>
+</details>
+
 <!---LeetCode Topics Start-->
 # LeetCode Topics
 ## Array
